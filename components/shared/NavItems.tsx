@@ -25,5 +25,5 @@ const NavItems = () => {
     </ul>
   )
 }
-
+ 
 export default NavItems
