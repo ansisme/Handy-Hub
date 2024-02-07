@@ -1,5 +1,5 @@
 import { Document } from 'mongodb';
-import { Schema } from 'mongoose';
+import { Schema,models, model} from 'mongoose';
 export interface IService extends Document {
     _id: string;
     serviceTitle: string;
@@ -23,3 +23,7 @@ const ServiceSchema = new Schema({
     createdAt: { type: Date, default: Date.now },
     url: { type: String },
 });
+
+const Service = models.Service || model<IService>('Service', ServiceSchema);
+
+export default Service;
