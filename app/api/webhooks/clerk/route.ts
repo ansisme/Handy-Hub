@@ -56,7 +56,7 @@ export async function POST(req: Request) {
  
 //whenever a user is created, event occured
 if(eventType === 'user.created'){
-    const {id, email_addresses, username, first_name, last_name, phone_numbers, image_url} = evt.data;
+    const {id, email_addresses, username, first_name, last_name, image_url} = evt.data;
 
     const user = {
         clerkId: id,
@@ -64,7 +64,7 @@ if(eventType === 'user.created'){
         username: username!, //username can sometimes be null otherwise causing warning/error in TS
         firstName: first_name,
         lastName: last_name,
-        phoneNumber: phone_numbers[0].phone_number, //might not work in clerk as premium required
+        // phoneNumber: phone_numbers[0].phone_number, //might not work in clerk as premium required
         photo: image_url
     }
     const newUser = await createUser(user);

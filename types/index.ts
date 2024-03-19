@@ -5,7 +5,7 @@ export type CreateUserParams = { //changed as per my config
     username: string
     firstName: string
     lastName: string
-    phoneNumber: string
+    // phoneNumber: string
     photo: string
   }
   
