@@ -10,7 +10,7 @@ import Order from "../mongodb/database/models/order.model"
 
 export async function createUser(user: CreateUserParams){
     try{
-        await connectToDatabase(); //connect to database
+        await connectToDatabase(); //connect to database, if we have a cached connection no need to connect again
         const newUser = await User.create(user); //create user
 
         return JSON.parse(JSON.stringify(newUser)) //the data that we pass to the frontend 
