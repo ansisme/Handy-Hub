@@ -31,4 +31,4 @@ const UserSchema = new Schema({
 //either get the existing models || create a new model by using the schema
 const User = models.User || model('User', UserSchema)
 
-export default User
+export default User;
