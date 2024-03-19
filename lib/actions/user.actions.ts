@@ -3,10 +3,10 @@
 import { revalidatePath } from "next/cache"
 import { CreateUserParams, UpdateUserParams } from "@/types"
 import { handleError } from "../utils"
-import { connectToDatabase } from "../mongodb/database"
-import User from "../mongodb/database/models/user.model"
-import Service from "../mongodb/database/models/service.model"
-import Order from "../mongodb/database/models/order.model"
+import { connectToDatabase } from "../database"
+import User from "../database/models/user.model"
+import Service from "../database/models/service.model"
+import Order from "../database/models/order.model"
 
 export async function createUser(user: CreateUserParams){
     try{
