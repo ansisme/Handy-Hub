@@ -4,8 +4,8 @@ export const headerLinks = [
       route: '/',
     },
     {
-      label: 'Create Service', //create events
-      route: '/service/create', //events/create
+      label: 'Create Service', //create services
+      route: '/services/create', //services/create
     },
     {
       label: 'My Profile',
@@ -13,15 +13,16 @@ export const headerLinks = [
     },
   ]
   
+  //need to be changed
   export const serviceDefaultValues = {
-    title: '',
+    serviceTitle: '',
     description: '',
     location: '',
     imageUrl: '',
-    startDateTime: new Date(),
-    endDateTime: new Date(),
     categoryId: '',
+    createdBy: '',
     price: '',
-    isFree: false,
+    isAvailable: false,
     url: '',
+    createdAt: new Date(),
   }
