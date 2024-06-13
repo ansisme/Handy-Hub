@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import React, { useState } from 'react'
 //copied from the shadcn official ui documentation of form 
@@ -27,7 +27,9 @@ import Image from 'next/image'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Checkbox } from "@/components/ui/checkbox"
-
+import { useUploadThing } from "@/lib/uploadthing";
+import { useRouter } from 'next/navigation'
+import { createService } from '@/lib/actions/service.action'
 
 type ServiceFormProps={
     userId: string;
@@ -35,18 +37,43 @@ type ServiceFormProps={
 }
 const ServiceForm = ({userId, type}: ServiceFormProps) => {
   const [files, setFiles] = useState<File[]>([]);
+  const router = useRouter();
   const initialValues = serviceDefaultValues;
-  //form the shadcn ui official documentation
+  const {startUpload} = useUploadThing('imageUploader');
+  //from the shadcn ui official documentation
   const form = useForm<z.infer<typeof ServiceFormSchema>>({
     resolver: zodResolver(ServiceFormSchema),
     defaultValues: initialValues
   })
  
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof ServiceFormSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
+  async function onSubmit(values: z.infer<typeof ServiceFormSchema>) {
+    let uploadImageUrl= values.imageUrl;
+    if(files.length>0){ //if user has uploaded the images
+      const uploadImages = await startUpload(files);
+      if(!uploadImages){
+        return;
+      }
+      uploadImageUrl = uploadImages[0].url;
+    }
+
+    if(type==="Create"){
+      try{
+        const newService = await createService({ //create this function
+          service: {...values, imageUrl: uploadImageUrl},
+          userId,
+          path: '/profile'
+        })
+        if(newService){
+          form.reset();
+          router.push(`/services/${newService._id}`);
+          console.log(newService);
+        }
+      }
+      catch(error){
+        console.log(error);
+      }
+    }
   }
   return (
     <Form {...form}>
@@ -190,7 +217,7 @@ const ServiceForm = ({userId, type}: ServiceFormProps) => {
          
 
         <div className='flex flex-col gap-5 md:flex-row'> */}
-         <FormField
+         {/* <FormField
                 control={form.control}
                 name="url"
                 render={({ field }) => (
@@ -208,18 +235,20 @@ const ServiceForm = ({userId, type}: ServiceFormProps) => {
                     <FormMessage />
                 </FormItem>
                 )}
-            />
+            /> */}
         <FormField
                 control={form.control}
                 name="isAvailable"
                 render={({ field }) => (
-                <FormItem className='w-full'>
+                <FormItem className='flex'>
                     <FormControl>
                         <div className='flex items-center'>
                         <label htmlFor="isAvailable" className='whitespace-nowrap pr-3 leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'>
                           Available
                         </label>
-                       <Checkbox id="isAvailable"  className='mr-2 h-5 w-5 border-2 border-primary-500'/>
+                       <Checkbox onCheckedChange={field.onChange}
+                       checked={field.value}
+                       id="isAvailable"  className='mr-2 h-5 w-5 border-2 border-primary-500'/>
                         </div>
                     </FormControl>
                       
@@ -235,9 +264,7 @@ const ServiceForm = ({userId, type}: ServiceFormProps) => {
         disabled={form.formState.isSubmitting} //in case we are already submitting the form
         className="button col-span-2 w-full"
        >
-        {form.formState.isSubmitting ? 
-        ('Submitting...') :
-          (`${type} your Service`) }
+        {form.formState.isSubmitting ? 'Submitting...' : `${type} your Service`}
         </Button>
     </form>
   </Form>

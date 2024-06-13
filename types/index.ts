@@ -17,19 +17,23 @@ export type CreateUserParams = { //changed as per my config
   }
   
   // ====== EVENT PARAMS--CHANGE
-  export type CreateEventParams = {
+  export type CreateServiceParams = {
     userId: string
-    event: {
-      title: string
-      description: string
-      location: string
-      imageUrl: string
-      startDateTime: Date
-      endDateTime: Date
+    service: {
+      serviceTitle: string
       categoryId: string
+      description: string
+      imageUrl: string
+      location: string
+      
+      createdAt: Date
+      // startDateTime: Date
+      // endDateTime: Date
+      // createdBy: string // check for this
+      
       price: string
-      isFree: boolean
-      url: string
+      // url: string
+      isAvailable: boolean
     }
     path: string
   }
