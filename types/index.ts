@@ -16,7 +16,7 @@ export type CreateUserParams = { //changed as per my config
     photo: string
   }
   
-  // ====== EVENT PARAMS--CHANGE
+  // ====== SERVICE PARAMS--CHANGED
   export type CreateServiceParams = {
     userId: string
     service: {
@@ -38,49 +38,49 @@ export type CreateUserParams = { //changed as per my config
     path: string
   }
   
-  export type UpdateEventParams = {
+ //changed as per my config
+  export type UpdateServiceParams = {
     userId: string
-    event: {
+    service: {
       _id: string
-      title: string
+      serviceTitle: string
       imageUrl: string
       description: string
       location: string
-      startDateTime: Date
-      endDateTime: Date
+      createdAt: Date
       categoryId: string
       price: string
-      isFree: boolean
-      url: string
+      isAvailable: boolean
     }
     path: string
   }
-  
-  export type DeleteEventParams = {
-    eventId: string
+ //changed as per my config
+  export type DeleteServiceParams = {
+    serviceId: string
     path: string
   }
   
-  export type GetAllEventsParams = {
+  //changed as per my config
+  export type GetAllServiceParams = {
     query: string
     category: string
     limit: number
     page: number
   }
-  
-  export type GetEventsByUserParams = {
+  //changed as per my config
+  export type GetServicesByUserParams = {
     userId: string
     limit?: number
     page: number
   }
-  
-  export type GetRelatedEventsByCategoryParams = {
+  //changed as per my config
+  export type GetRelatedServicesByCategoryParams = {
     categoryId: string
-    eventId: string
+    serviceId: string
     limit?: number
     page: number | string
   }
-  
+  //need to change this
   export type Event = {
     _id: string
     title: string
