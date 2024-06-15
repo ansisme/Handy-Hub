@@ -1,8 +1,18 @@
+import Collection from '@/components/shared/Collection'
 import { Button } from '@/components/ui/button'
+import { getAllServices } from '@/lib/actions/service.action';
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function Home() {
+export default async function Home() {
+  const services=await getAllServices({
+    query: '',
+    category: '',
+    page: 1,
+    limit: 6,
+  });
+
+  // console.log(services)
   return (
    <>
       <section className='bg-primary-50 bg-dotted-pattern bg-contain py-5 md:py-10'>
@@ -32,6 +42,15 @@ export default function Home() {
           Search
           Category
         </div>
+        <Collection
+          data={services?.data}
+          emptyTitle="No services found"
+          emptyStateSubtext="Please check back later"
+          collectionType="All_Services"
+          limit={6}
+          page={1}
+          totalPages={2}
+        />
       </section>
      
    </>

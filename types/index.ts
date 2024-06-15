@@ -16,86 +16,90 @@ export type CreateUserParams = { //changed as per my config
     photo: string
   }
   
-  // ====== EVENT PARAMS--CHANGE
-  export type CreateEventParams = {
+  // ====== SERVICE PARAMS--CHANGED
+  export type CreateServiceParams = {
     userId: string
-    event: {
-      title: string
-      description: string
-      location: string
-      imageUrl: string
-      startDateTime: Date
-      endDateTime: Date
+    service: {
+      serviceTitle: string
       categoryId: string
+      description: string
+      imageUrl: string
+      location: string
+      
+      createdAt: Date
+      // startDateTime: Date
+      // endDateTime: Date
+      // createdBy: string // check for this
+      
       price: string
-      isFree: boolean
-      url: string
+      // url: string
+      isAvailable: boolean
     }
     path: string
   }
   
-  export type UpdateEventParams = {
+ //changed as per my config
+  export type UpdateServiceParams = {
     userId: string
-    event: {
+    service: {
       _id: string
-      title: string
+      serviceTitle: string
       imageUrl: string
       description: string
       location: string
-      startDateTime: Date
-      endDateTime: Date
+      createdAt: Date
       categoryId: string
       price: string
-      isFree: boolean
-      url: string
+      isAvailable: boolean
     }
     path: string
   }
-  
-  export type DeleteEventParams = {
-    eventId: string
+ //changed as per my config
+  export type DeleteServiceParams = {
+    serviceId: string
     path: string
   }
   
-  export type GetAllEventsParams = {
+  //changed as per my config
+  export type GetAllServiceParams = {
     query: string
     category: string
     limit: number
     page: number
   }
-  
-  export type GetEventsByUserParams = {
+  //changed as per my config
+  export type GetServicesByUserParams = {
     userId: string
     limit?: number
     page: number
   }
-  
-  export type GetRelatedEventsByCategoryParams = {
+  //changed as per my config
+  export type GetRelatedServicesByCategoryParams = {
     categoryId: string
-    eventId: string
+    serviceId: string
     limit?: number
     page: number | string
   }
-  
-  export type Event = {
+  //changed as per my config - still check pending
+  export type Service = {
     _id: string
-    title: string
+    serviceTitle: string
     description: string
     price: string
-    isFree: boolean
+    isAvailable: boolean
     imageUrl: string
     location: string
-    startDateTime: Date
-    endDateTime: Date
-    url: string
-    organizer: {
+    createdAt: Date
+    // endDateTime: Date
+    // url: string
+    createdBy: {
       _id: string
       firstName: string
       lastName: string
     }
     category: {
       _id: string
-      name: string
+      categoryName: string
     }
   }
   
@@ -106,23 +110,23 @@ export type CreateUserParams = { //changed as per my config
   
   // ====== ORDER PARAMS--RIGHT
   export type CheckoutOrderParams = {
-    eventTitle: string
-    eventId: string
+    serviceTitle: string
+    serviceId: string
     price: string
-    isFree: boolean
+    isAvailable: boolean
     buyerId: string
   }
-  
+  //changed as per my config
   export type CreateOrderParams = {
     stripeId: string
-    eventId: string
+    serviceId: string
     buyerId: string
     totalAmount: string
     createdAt: Date
   }
-  
+   //changed as per my config
   export type GetOrdersByEventParams = {
-    eventId: string
+    serviceId: string
     searchString: string
   }
   

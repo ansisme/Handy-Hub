@@ -9,7 +9,7 @@ export interface IService extends Document {
     imageUrl?: string;
     category: {_id: string, categoryName: string};
     createdBy: {_id: string, firstName: string, lastName: string, phoneNumber: string};
-    price: number;
+    price: string;
     isAvailable: boolean;
     createdAt: Date;
     url?: string;

@@ -91,3 +91,15 @@ export const handleError = (error: unknown) => {
   console.error(error)
   throw new Error(typeof error === 'string' ? error : JSON.stringify(error))
 }
+
+// export const handleError = (error: unknown) => {
+//   console.error(error);
+
+//   if (error instanceof Error) {
+//     throw new Error(error.message);
+//   } else if (typeof error === 'string') {
+//     throw new Error(error);
+//   } else {
+//     throw new Error(JSON.stringify(error, Object.getOwnPropertyNames(error)));
+//   }
+// }
