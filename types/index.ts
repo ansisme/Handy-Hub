@@ -125,7 +125,7 @@ export type CreateUserParams = { //changed as per my config
     createdAt: Date
   }
    //changed as per my config
-  export type GetOrdersByEventParams = {
+  export type GetOrdersByServiceParams = {
     serviceId: string
     searchString: string
   }
