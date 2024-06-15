@@ -70,7 +70,7 @@ const Card = ({ service, hasOrderLink, hidePrice }: CardpropsType) => {
             >
               <p className="text-primary-500">Order Details</p>
               <Image
-                src="/assets/icons/arrow-right.svg"
+                src="/assets/icons/arrow.svg"
                 alt="arrow"
                 width={10}
                 height={10}

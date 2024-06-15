@@ -6,7 +6,7 @@ export interface IOrder extends Document {
   totalAmount: string
   service: {
     _id: string
-    title: string
+    serviceTitle: string
   }
   buyer: {
     _id: string
@@ -39,7 +39,7 @@ const OrderSchema = new Schema({
   },
   service: {
     type: Schema.Types.ObjectId,
-    ref: 'Event',
+    ref: 'Service',
   },
   buyer: {
     type: Schema.Types.ObjectId,

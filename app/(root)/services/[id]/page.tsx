@@ -85,8 +85,8 @@ const ServiceDetails = async ({ params: { id }, searchParams }: SearchParamProps
           emptyStateSubtext="Please check back later"
           collectionType="All_Services"
           limit={6}
-          page={1}
-          totalPages={2}
+          page={searchParams.page as string}
+          totalPages={relatedServices?.totalPages}
         />
     </section>
     </>
