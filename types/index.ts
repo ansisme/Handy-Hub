@@ -80,26 +80,26 @@ export type CreateUserParams = { //changed as per my config
     limit?: number
     page: number | string
   }
-  //need to change this
-  export type Event = {
+  //changed as per my config - still check pending
+  export type Service = {
     _id: string
-    title: string
+    serviceTitle: string
     description: string
     price: string
-    isFree: boolean
+    isAvailable: boolean
     imageUrl: string
     location: string
-    startDateTime: Date
-    endDateTime: Date
-    url: string
-    organizer: {
+    createdAt: Date
+    // endDateTime: Date
+    // url: string
+    createdBy: {
       _id: string
       firstName: string
       lastName: string
     }
     category: {
       _id: string
-      name: string
+      categoryName: string
     }
   }
   
@@ -110,23 +110,23 @@ export type CreateUserParams = { //changed as per my config
   
   // ====== ORDER PARAMS--RIGHT
   export type CheckoutOrderParams = {
-    eventTitle: string
-    eventId: string
+    serviceTitle: string
+    serviceId: string
     price: string
-    isFree: boolean
+    isAvailable: boolean
     buyerId: string
   }
-  
+  //changed as per my config
   export type CreateOrderParams = {
     stripeId: string
-    eventId: string
+    serviceId: string
     buyerId: string
     totalAmount: string
     createdAt: Date
   }
-  
+   //changed as per my config
   export type GetOrdersByEventParams = {
-    eventId: string
+    serviceId: string
     searchString: string
   }
   

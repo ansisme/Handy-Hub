@@ -29,16 +29,21 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Checkbox } from "@/components/ui/checkbox"
 import { useUploadThing } from "@/lib/uploadthing";
 import { useRouter } from 'next/navigation'
-import { createService } from '@/lib/actions/service.action'
+import { createService, updateService } from '@/lib/actions/service.action'
+import { IService } from '@/lib/database/models/service.model'
 
 type ServiceFormProps={
     userId: string;
     type: "Create" | "Update";
+    service? : IService;
+    serviceId?: string;
 }
-const ServiceForm = ({userId, type}: ServiceFormProps) => {
+const ServiceForm = ({userId, type,service,serviceId}: ServiceFormProps) => {
   const [files, setFiles] = useState<File[]>([]);
   const router = useRouter();
-  const initialValues = serviceDefaultValues;
+  const initialValues = service && type==='Update'
+    ? {...service, createdAt: new Date(service.createdAt) } 
+    : serviceDefaultValues;
   const {startUpload} = useUploadThing('imageUploader');
   //from the shadcn ui official documentation
   const form = useForm<z.infer<typeof ServiceFormSchema>>({
@@ -59,7 +64,7 @@ const ServiceForm = ({userId, type}: ServiceFormProps) => {
 
     if(type==="Create"){
       try{
-        const newService = await createService({ //create this function
+        const newService = await createService({ 
           service: {...values, imageUrl: uploadImageUrl},
           userId,
           path: '/profile'
@@ -67,9 +72,30 @@ const ServiceForm = ({userId, type}: ServiceFormProps) => {
         if(newService){
           form.reset();
           router.push(`/services/${newService._id}`);
-          console.log(newService);
+          // console.log(newService);
         }
       }
+      catch(error){
+        console.log(error);
+      }
+    }
+    if(type==="Update"){
+      if(!serviceId){
+        router.back(); //go back to the previous page
+        return;
+      }
+      try{
+        const updatedService = await updateService({ 
+          userId,
+          service: {...values, imageUrl: uploadImageUrl, _id:serviceId},
+          path: `/services/${serviceId}`
+        })
+        if(updatedService){
+          form.reset();
+          router.push(`/services/${updatedService._id}`);
+        }
+      }
+      
       catch(error){
         console.log(error);
       }

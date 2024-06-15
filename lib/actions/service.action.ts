@@ -62,7 +62,7 @@ export async function updateService({ userId, service, path }: UpdateServicePara
       await connectToDatabase()
   
       const serviceToUpdate = await Service.findById(service._id)
-      if (!serviceToUpdate || serviceToUpdate.organizer.toHexString() !== userId) {
+      if (!serviceToUpdate || serviceToUpdate.createdBy.toHexString() !== userId) {
         throw new Error('Unauthorized or event not found')
       }
   
@@ -145,12 +145,12 @@ export async function getAllServices({ query, limit = 6, page, category }: GetAl
     }
   }
   
-  // GET Service BY ORGANIZER
+  // GET Service BY createdBy
   export async function getServicesByUser({ userId, limit = 6, page }: GetServicesByUserParams) {
     try {
       await connectToDatabase()
   
-      const conditions = { organizer: userId }
+      const conditions = { createdBy: userId }
       const skipAmount = (page - 1) * limit
   
       const servicesQuery = Service.find(conditions)
