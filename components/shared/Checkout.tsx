@@ -32,7 +32,7 @@ const Checkout = ({service, userId}: {service: IService, userId: string}) => {
   return (
     <form action={onCheckOut} method="post">
         <Button type="submit" size="lg" role="link" className='button sm:w-fit'>
-            {service.isAvailable ? "Book Now" : "Not Available"}
+            {service.isAvailable ? "Book Now" : "Booked"}
         </Button>
     </form>
   )

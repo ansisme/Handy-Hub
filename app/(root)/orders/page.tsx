@@ -25,7 +25,8 @@ const Orders = async ({ searchParams }: SearchParamProps) => {
           <thead>
             <tr className="p-medium-14 border-b text-grey-500">
               <th className="min-w-[250px] py-3 text-left">Order ID</th>
-              <th className="min-w-[200px] flex-1 py-3 pr-4 text-left">Service</th>
+              <th className="min-w-[150px] py-3 text-left">Service</th>
+              <th className="min-w-[200px] flex-1 py-3 pr-4 text-left">Email</th>
               <th className="min-w-[150px] py-3 text-left">Buyer</th>
               <th className="min-w-[100px] py-3 text-left">Created</th>
               <th className="min-w-[100px] py-3 text-right">Amount</th>
@@ -47,7 +48,8 @@ const Orders = async ({ searchParams }: SearchParamProps) => {
                       className="p-regular-14 lg:p-regular-16 border-b "
                       style={{ boxSizing: 'border-box' }}>
                       <td className="min-w-[250px] py-4 text-primary-500">{row._id}</td>
-                      <td className="min-w-[200px] flex-1 py-4 pr-4">{row.serviceTitle}</td>
+                      <td className="min-w-[150px] py-4 ">{row.serviceTitle}</td>
+                      <td className="min-w-[200px] flex-1 py-4 pr-4">{row.email}</td>
                       <td className="min-w-[150px] py-4">{row.buyer}</td>
                       <td className="min-w-[100px] py-4">
                         {formatDateTime(row.createdAt).dateTime}

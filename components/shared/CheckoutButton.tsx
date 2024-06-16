@@ -17,7 +17,7 @@ const CheckoutButton = ({ service }: { service: IService }) => {
         <p className="p-2 text-red-400">
           Sorry, this service is currently unavailable as it has already been
           booked. Please check back later or explore our other available
-          services. Thank you for your understanding.
+          services!
         </p>
       ) : (
         <>

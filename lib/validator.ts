@@ -11,7 +11,10 @@ export const ServiceFormSchema = z.object({
   
    location: z.string().min(3,"Location must be atleast 3 characters").max(400, 'Location must be less than 400 characters'),
    createdAt: z.date(),
-   price:z.string(),
+   // price:z.string(),
+   price: z.string().regex(/^\d+(\.\d{1,2})?$/, {
+      message: "Price must be a valid number with up to two decimal places",
+    }),
    // url: z.string().url(),
    isAvailable: z.boolean(),
   })

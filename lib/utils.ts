@@ -49,9 +49,9 @@ export const convertFileToUrl = (file: File) => URL.createObjectURL(file)
 
 export const formatPrice = (price: string) => {
   const amount = parseFloat(price)
-  const formattedPrice = new Intl.NumberFormat('en-US', {
+  const formattedPrice = new Intl.NumberFormat('en-IN', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'INR',
   }).format(amount)
 
   return formattedPrice
@@ -91,15 +91,3 @@ export const handleError = (error: unknown) => {
   console.error(error)
   throw new Error(typeof error === 'string' ? error : JSON.stringify(error))
 }
-
-// export const handleError = (error: unknown) => {
-//   console.error(error);
-
-//   if (error instanceof Error) {
-//     throw new Error(error.message);
-//   } else if (typeof error === 'string') {
-//     throw new Error(error);
-//   } else {
-//     throw new Error(JSON.stringify(error, Object.getOwnPropertyNames(error)));
-//   }
-// }

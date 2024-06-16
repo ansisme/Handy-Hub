@@ -63,7 +63,7 @@ export async function updateService({ userId, service, path }: UpdateServicePara
   
       const serviceToUpdate = await Service.findById(service._id)
       if (!serviceToUpdate || serviceToUpdate.createdBy.toHexString() !== userId) {
-        throw new Error('Unauthorized or event not found')
+        throw new Error('Unauthorized or service not found')
       }
   
       const updatedService = await Service.findByIdAndUpdate(

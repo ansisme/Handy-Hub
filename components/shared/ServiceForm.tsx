@@ -111,7 +111,7 @@ const ServiceForm = ({userId, type,service,serviceId}: ServiceFormProps) => {
                 render={({ field }) => (
                 <FormItem className='w-full'>
                     <FormControl>
-                        <Input placeholder="Event Title" {...field}
+                        <Input placeholder="Service Title" {...field}
                         className='input-field' />
                     </FormControl>
                 

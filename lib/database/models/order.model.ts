@@ -22,6 +22,7 @@ export type IOrderItem = {
   serviceTitle: string
   serviceId: string
   buyer: string
+  email: string
 }
 
 const OrderSchema = new Schema({
