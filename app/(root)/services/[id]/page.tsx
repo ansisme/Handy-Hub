@@ -29,20 +29,30 @@ const ServiceDetails = async ({ params: { id }, searchParams }: SearchParamProps
             <h2 className="h2-bold">{service.serviceTitle}</h2>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
               <div className="flex gap-3">
-                <p className="p-bold-20 rounded-full bg-green-500/10 px-5 py-2 text-green-700">
-                  {service.isAvailable ? "Available" : "Not Available"}
+              <p
+                className={`p-bold-20 rounded-full px-5 py-2 line-clamp-1 ${
+                  service.isAvailable
+                    ? "bg-green-500/10 text-green-700"
+                    : "bg-red-500/10 text-red-400"
+                }`}
+              >
+                {service.isAvailable ? "Available" : "Booked"}
+              </p>
+
+                <p className="p-medium-16 rounded-full bg-grey-500/10 px-4 py-2.5 text-grey-500 line-clamp-1">
+                    {service.category.categoryName}
                 </p>
-                <p className="p-medium-16 rounded-full bg-grey-500/10 px-4 py-2.5 text-grey-500">
-                  {service.category.categoryName}
+                <p className="p-bold-16 rounded-full bg-grey-500/10 px-4 py-2.5 text-grey-500 line-clamp-1">
+                    ₹{service.price}
                 </p>
               </div>
               <p className="p-medium-18 ml-2 mt-2 sm:mt-0">
-                {" "}
+                by{" "}
                 <span className="text-primary-500">
                   {service.createdBy.firstName} {service.createdBy.lastName}
                 </span>
               </p>
-            </div>
+            </div>            
           </div>
           {/*  Checkout button */}
           <CheckoutButton service={service} />

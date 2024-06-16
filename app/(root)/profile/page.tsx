@@ -16,7 +16,6 @@ const Profile = async ({searchParams} : SearchParamProps) => {
   const orders = await getOrdersByUser({ userId, page: ordersPage });
   const orderedServices = orders?.data.map((order: IOrder) => order.service) || [];
   const offeredServices = await getServicesByUser({ userId, page: servicesPage });
-  console.log({ orderedServices });
   return (
     <>
       {/* Hired Services */}

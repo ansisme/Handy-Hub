@@ -100,11 +100,12 @@ export async function getOrdersByService({
           _id: 1,
           totalAmount: 1,
           createdAt: 1,
-          serviceTitle: "$service.title",
+          serviceTitle: "$service.serviceTitle",
           serviceId: "$service._id",
           buyer: {
             $concat: ["$buyer.firstName", " ", "$buyer.lastName"],
           },
+          email: "$buyer.email",
         },
       },
       {
@@ -134,8 +135,7 @@ export async function getOrdersByUser({
 
     const skipAmount = (Number(page) - 1) * limit;
     const conditions = { buyer: userId };
-    console.log({ conditions });
-    console.log({ userId });
+
     const orders = await Order.distinct("service._id")
       .find(conditions)
       .sort({ createdAt: "desc" })
@@ -151,7 +151,6 @@ export async function getOrdersByUser({
         },
       });
 
-    console.log({ orders });
     const ordersCount = await Order.distinct("service._id").countDocuments(
       conditions
     );
