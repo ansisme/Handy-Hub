@@ -12,6 +12,8 @@ export interface IOrder extends Document {
     _id: string
     firstName: string
     lastName: string
+    email: string
+    phonrNumber: string
   }
 }
 
@@ -23,6 +25,7 @@ export type IOrderItem = {
   serviceId: string
   buyer: string
   email: string
+  phoneNumber: string
 }
 
 const OrderSchema = new Schema({

@@ -30,7 +30,7 @@ export type CreateUserParams = { //changed as per my config
       // startDateTime: Date
       // endDateTime: Date
       // createdBy: string // check for this
-      
+      phoneNumber: string
       price: string
       // url: string
       isAvailable: boolean
@@ -51,6 +51,7 @@ export type CreateUserParams = { //changed as per my config
       categoryId: string
       price: string
       isAvailable: boolean
+      phoneNumber: string
     }
     path: string
   }
@@ -90,6 +91,7 @@ export type CreateUserParams = { //changed as per my config
     imageUrl: string
     location: string
     createdAt: Date
+    phoneNumber: string
     // endDateTime: Date
     // url: string
     createdBy: {

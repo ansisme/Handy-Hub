@@ -77,6 +77,15 @@ const ServiceDetails = async ({ params: { id }, searchParams }: SearchParamProps
               />
               <p className="p-medium-16 lg:p-regular-20">{service.location}</p>
             </div>
+            <div className="p-regular-20 flex items-center gap-3">
+              <Image
+                src="/assets/icons/phone.svg"
+                alt="phone"
+                width={32}
+                height={32}
+              />
+              <p className="p-medium-16 lg:p-regular-20">{service.phoneNumber}</p>
+            </div>
           </div>
           <div className="flex flex-col gap-2">
             <p className="p-bold-20 text-grey-600">What I offer for this service?</p>

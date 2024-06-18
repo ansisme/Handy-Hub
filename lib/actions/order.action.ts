@@ -35,6 +35,7 @@ export const checkoutOrder = async (order: CheckoutOrderParams) => {
       metadata: {
         serviceId: order.serviceId,
         buyerId: order.buyerId,
+        //phone number??
       },
       mode: "payment",
       success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/profile`,
@@ -106,6 +107,7 @@ export async function getOrdersByService({
             $concat: ["$buyer.firstName", " ", "$buyer.lastName"],
           },
           email: "$buyer.email",
+          phoneNumber: "$buyer.phoneNumber",
         },
       },
       {
