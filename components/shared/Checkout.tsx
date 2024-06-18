@@ -4,12 +4,9 @@ import { IService } from '@/lib/database/models/service.model'
 import { loadStripe } from '@stripe/stripe-js';
 import { checkoutOrder } from '@/lib/actions/order.action';
 
-// Make sure to call `loadStripe` outside of a component’s render to avoid
-// recreating the `Stripe` object on every render.
 loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 const Checkout = ({service, userId}: {service: IService, userId: string}) => {
     useEffect(() => {
-        // Check to see if this is a redirect back from Checkout
         const query = new URLSearchParams(window.location.search);
         if (query.get('success')) {
           console.log('Order placed! You will receive an email confirmation.');
@@ -26,6 +23,7 @@ const Checkout = ({service, userId}: {service: IService, userId: string}) => {
         price: service.price,
         isAvailable: service.isAvailable,
         buyerId: userId,
+        phoneNumber: service.phoneNumber
        }
        await checkoutOrder(order);
     }

@@ -17,4 +17,5 @@ export const ServiceFormSchema = z.object({
     }),
    // url: z.string().url(),
    isAvailable: z.boolean(),
+   phoneNumber: z.string().min(10, "Phone number must be atleast 10 characters"),
   })

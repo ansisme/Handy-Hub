@@ -39,7 +39,7 @@ const Card = ({ service, hasOrderLink, hidePrice }: CardpropsType) => {
           <DeleteConfirmation serviceId={service._id} />
         </div>
       )}
-      <div className="flex flex-col gap-3 min-h-[230px] p-5 md:gap-4">
+      <div className="flex flex-col gap-2 min-h-[230px] p-5 md:gap-3">
         {!hidePrice && (
           <div className="flex gap-2">
             <span
@@ -57,23 +57,36 @@ const Card = ({ service, hasOrderLink, hidePrice }: CardpropsType) => {
             </p>
           </div>
         )}
-        <p className="p-medium-16 md:p-medium-18 text-grey-500">
+        <p className="p-medium-14 md:p-medium-16 text-grey-500">
           {formatDateTime(service.createdAt).dateOnly}
         </p>
         <Link href={`/services/${service._id}`}>
-          <p className="p-medium-16 md:p-medium-20 line-clamp-2 flex-1 text-black">
+          <p className="p-medium-14 md:p-medium-18 line-clamp-2 flex-1 text-black">
             {service.serviceTitle}
           </p>
         </Link>
 
         {!hidePrice && (
-          <p className="p-medium-16 md:p-medium-20 text-primary-500">
+          <p className="p-medium-14 md:p-medium-16 text-primary-500">
             Price: ₹{service.price}
           </p>
         )}
-        <div className="flex-between w-full">
+        <div>
+          <p className="text-grey-500">
+            <span className="p-medium-14 md:p-medium-16 ">
+              Location:{' '}
+            </span>
+            <span className="p-medium-14 md:p-medium-16">
+              {service.location}
+            </span>
+          </p>
+        </div>
+        <div className="flex-col w-full">
           <p className="p-medium-14 md:p-medium-16 text-grey-600">
             {service.createdBy.firstName} {service.createdBy.lastName}
+          </p>
+          <p className="p-medium-14 md:p-medium-16 text-grey-600">
+            Phone: {service.phoneNumber}
           </p>
           {hasOrderLink && (
             <Link

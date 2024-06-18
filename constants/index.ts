@@ -23,6 +23,7 @@ export const headerLinks = [
     createdBy: '',
     price: '',
     isAvailable: false,
-    url: '',
+    // url: '',
+    phoneNumber: '',
     createdAt: new Date(),
   }

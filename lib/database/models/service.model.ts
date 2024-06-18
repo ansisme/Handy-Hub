@@ -12,7 +12,8 @@ export interface IService extends Document {
     price: string;
     isAvailable: boolean;
     createdAt: Date;
-    url?: string;
+    // url?: string;
+    phoneNumber: string;
 }
 const ServiceSchema = new Schema({
     serviceTitle: { type: String, required: true},
@@ -24,7 +25,8 @@ const ServiceSchema = new Schema({
     price: { type: String, required: true },
     isAvailable: { type: Boolean, default: false },
     createdAt: { type: Date, default: Date.now },
-    url: { type: String },
+    // url: { type: String },
+    phoneNumber: { type: String, required: true },
 });
 
 //creating a new model
